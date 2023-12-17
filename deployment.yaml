@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-hello-world-deployment
+  labels:
+    app: k8s-hello-world 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-hello-world 
+  template:
+    metadata:
+      labels:
+        app: k8s-hello-world
+    spec:
+      containers:
+      - name: k8s-hello-world
+        image: ghcr.io/ffrub/k8s-hello-world
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            memory: 400Mi
+
+
